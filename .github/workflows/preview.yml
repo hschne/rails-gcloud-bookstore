@@ -105,8 +105,8 @@ jobs:
             --update-tags pr-${{github.event.number}}=bookstore-preview-${{github.event.number}}-${{steps.commit.outputs.hash}} \
             --platform=managed \
             --region=europe-north1
-              name: Get Preview URL
-      - name: preview-url
+      - name: Get Preview URL
+        id: preview-url
         run: |
           url=$(gcloud run services describe bookstore-preview --format 'value(status.url)' --platform=managed --region=europe-north1 | sed 's|https://|https://pr-${{github.event.number}}---|g')
           echo "::set-output name=url::$url"
