@@ -101,7 +101,7 @@ jobs:
       - name: Update Traffic
         run: |
           gcloud components install beta
-          gcloud beta run services update-traffic bookstore \
+          gcloud beta run services update-traffic bookstore-preview \
             --update-tags pr-${{github.event.number}}=bookstore-preview-${{github.event.number}}-${{steps.commit.outputs.hash}} \
             --platform=managed \
             --region=europe-north1
