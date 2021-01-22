@@ -85,7 +85,7 @@ jobs:
         run: echo "::set-output name=hash::$(git rev-parse --short HEAD)"
       - name: Deploy Revision On Cloud Run
         run: |
-          gcloud run deploy bookstore \
+          gcloud run deploy bookstore-preview \
           --image=gcr.io/rails-gcloud-bookstore/bookstore:${{github.event.number}} \
           --platform=managed \
           --port=3000 \
@@ -94,9 +94,10 @@ jobs:
           --set-env-vars DATABASE_HOST=/cloudsql/rails-gcloud-bookstore:europe-north1:bookstore-db \
           --set-env-vars DATABASE_USERNAME='bookstore' \
           --set-env-vars DATABASE_PASSWORD='bookstore' \
-          --set-env-vars DATABASE_NAME=bookstore{{github.event.number}} \
+          --set-env-vars DATABASE_NAME=bookstore_production_${{github.event.number}} \
           --set-env-vars RAILS_PRODUCTION_KEY=${{ secrets.RAILS_PRODUCTION_KEY }} \
-          --region=europe-north1 
+          --allow-unauthenticated \
+          --region=europe-north1
       - name: Update Traffic
         run: |
           gcloud components install beta
