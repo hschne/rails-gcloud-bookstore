@@ -96,8 +96,7 @@ jobs:
           --set-env-vars DATABASE_PASSWORD='bookstore' \
           --set-env-vars DATABASE_NAME=bookstore{{github.event.number}} \
           --set-env-vars RAILS_PRODUCTION_KEY=${{ secrets.RAILS_PRODUCTION_KEY }} \
-          --region=europe-north1 \
-          --no-traffic
+          --region=europe-north1 
       - name: Update Traffic
         run: |
           gcloud components install beta
