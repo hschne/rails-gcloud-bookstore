@@ -102,13 +102,13 @@ jobs:
         run: |
           gcloud components install beta
           gcloud beta run services update-traffic bookstore \
-            --update-tags pr-${{github.event.number}}=bookstore-${{github.event.number}}-${{steps.commit.outputs.hash}} \
+            --update-tags pr-${{github.event.number}}=bookstore-preview-${{github.event.number}}-${{steps.commit.outputs.hash}} \
             --platform=managed \
             --region=europe-north1
               name: Get Preview URL
       - name: preview-url
         run: |
-          url=$(gcloud run services describe bookstore --format 'value(status.url)' --platform=managed --region=europe-north1 | sed 's|https://|https://pr-${{github.event.number}}---|g')
+          url=$(gcloud run services describe bookstore-preview --format 'value(status.url)' --platform=managed --region=europe-north1 | sed 's|https://|https://pr-${{github.event.number}}---|g')
           echo "::set-output name=url::$url"
       - name: Post PR comment with preview deployment URL
         uses: mshick/add-pr-comment@v1
