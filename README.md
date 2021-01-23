@@ -1,24 +1,5 @@
-# README
+# Pull Request Previews
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository is a demo of how to use Google Cloud Run and GitHub Actions to deploy individual pull requests for a simple Rails application.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can find detailed more information in [this article](https://hschne.at/2021/01/18/pull-request-previews-with-rails-cloud-run-and-github-actions.html) 
